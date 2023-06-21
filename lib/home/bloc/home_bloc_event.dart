@@ -1,7 +1,8 @@
 part of 'home_bloc_bloc.dart';
 
-@immutable
 abstract class HomeBlocEvent {}
+
+class HomeInitialFetch extends HomeBlocEvent {}
 
 class HomeButtonCartClicked extends HomeBlocEvent {}
 
