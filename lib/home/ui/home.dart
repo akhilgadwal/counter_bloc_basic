@@ -28,11 +28,17 @@ class _HomePageState extends State<HomePage> {
       buildWhen: (previous, current) => current is! HomeBlocActionState,
       listener: (context, state) {
         if (state is HomeClickedCartState) {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => CartScreen()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const CartScreen()));
         } else if (state is HomeClickedWishlistState) {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => WishListScreen()));
+              MaterialPageRoute(builder: (context) => const WishListScreen()));
+        } else if (state is HomeProducttileHeartClicked) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(const SnackBar(content: Text('added to Cart')));
+        } else if (state is HomeProdcustileWishlistClicked) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(const SnackBar(content: Text('added to WishList')));
         }
       },
       builder: (context, state) {
@@ -63,7 +69,9 @@ class _HomePageState extends State<HomePage> {
               body: ListView.builder(
                   itemCount: success.products.length,
                   itemBuilder: (context, index) {
-                    return ProductTile(productModel: success.products[index]);
+                    return ProductTile(
+                        homeBlocBloc: homeBlocBloc,
+                        productModel: success.products[index]);
                   }),
             );
           case HomeLoadedErrorState:

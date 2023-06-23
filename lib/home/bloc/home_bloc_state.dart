@@ -18,3 +18,7 @@ class HomeLoadedErrorState extends HomeBlocState {}
 class HomeClickedCartState extends HomeBlocActionState {}
 
 class HomeClickedWishlistState extends HomeBlocActionState {}
+
+class HomeProducttileHeartClicked extends HomeBlocActionState {}
+
+class HomeProdcustileWishlistClicked extends HomeBlocActionState {}
